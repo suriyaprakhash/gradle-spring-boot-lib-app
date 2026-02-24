@@ -1,0 +1,18 @@
+[versions]
+guava = "33.4.6-jre"
+junit-jupiter = "5.12.1"
+springBoot = "3.5.11"
+
+[libraries]
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher= { module = "org.junit.platform:junit-platform-launcher" }
+# The BOM (Bill of Materials) for Spring Boot
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+
+[plugins]
+# Move the plugin ID here
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
