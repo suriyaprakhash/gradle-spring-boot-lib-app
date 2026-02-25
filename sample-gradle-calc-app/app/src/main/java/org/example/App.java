@@ -4,13 +4,13 @@
 package org.example;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+  public String getGreeting() {
+    return "Hello World!";
+  }
 
-    public static void main(String[] args) {
-        Calc calc = new Calc();
-        System.out.println(new App().getGreeting());
-        System.out.println(calc.add(10,20,30));
-    }
+  public static void main(String[] args) {
+    Calc calc = new Calc();
+    System.out.println(new App().getGreeting());
+    System.out.println(calc.add(10, 20, 30));
+  }
 }

@@ -8,7 +8,16 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("my-all-standards-convention") version ("1.0.0")
 }
+
+tasks.withType<Pmd>().configureEach {
+    // Exclude specific files using regex
+    exclude("**/src/**")
+    exclude("**/test/**")
+}
+
+val jacocoExcludes by extra(listOf("com/suriyaprakhash/gradletest/GradletestApplication.class"))
 
 repositories {
     // Use Maven Central for resolving dependencies.
