@@ -54,3 +54,31 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+interface CleanupExtension {
+    val folderToClean: org.gradle.api.provider.Property<String>
+}
+val cleanupConfig = project.extensions.create<CleanupExtension>("cleanupConfig")
+cleanupConfig.folderToClean.convention("temp")
+
+tasks.register<Delete>("cleanTemp") {
+    group = "cleanup"
+    description = "Deletes the configured folder"
+
+    delete(layout.projectDirectory.dir(cleanupConfig.folderToClean))
+
+    // It runs ONLY after the internal 'Delete' action finishes.
+    doLast {
+        val tempDir = layout.projectDirectory.dir(cleanupConfig.folderToClean.get()).asFile
+        if (!tempDir.exists()) {
+            println("SUCCESS: 'temp' folder deleted.")
+        } else {
+            println("ERROR: 'temp' folder still exists.")
+        }
+    }
+}
+
+// User Configuration
+//cleanupConfig.apply {
+//    folderToClean.set("logs")
+//}
